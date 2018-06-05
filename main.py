@@ -1,33 +1,66 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template, request, session, url_for, flash, redirect, send_file, jsonify
+from sqlalchemy import create_engine, and_, distinct
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
+from database import Base, Activities, Exercises, WorkoutPrograms, ProgramRoutine
+
+engine = create_engine('sqlite:///stayactiv-dev.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+dbsession = DBSession()
 
 app = Flask(__name__)
 
 # https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 @app.route('/')
 def hello_world():
-  return '<H1>Hello, Welcome to StayActiv!</H1>'
+  return '<H1>Hello, Welcome to StayActiv!</H1>' \
+         '<a href="https://stayactiv.azurewebsites.net/activities">Activities</a>' \
+         '<a href="https://stayactiv.azurewebsites.net/exercises">Exercises</a>' \
+         '<a href="https://stayactiv.azurewebsites.net/WorkoutPrograms">Workout Programs</a>' \
+         '<a href="https://stayactiv.azurewebsites.net/ProgramRoutine">Program Routine</a>'
+
+@app.route('/activities', methods=['GET'])
+def get_activities():
+    try:
+        List = dbsession.query(Activities).all()
+    except:
+        NoResultFound
+
+    return jsonify(Ativities=[i.serialize for i in List])
 
 
-tasks = [
-    {
-        'id': 1,
-        'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
-        'done': False
-    },
-    {
-        'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web',
-        'done': False
-    }
-]
+@app.route('/exercises', methods=['GET'])
+def get_exercises():
+    try:
+        List = dbsession.query(Exercises).all()
+    except:
+        NoResultFound
 
-@app.route('/tasks', methods=['GET'])
-def get_tasks():
-    #return "Welcome"
-    return jsonify({'tasks': tasks})
+    return jsonify(Exercises=[i.serialize for i in List])
+
+
+@app.route('/WorkoutPrograms', methods=['GET'])
+def get_workoutPrograms():
+    try:
+        List = dbsession.query(WorkoutPrograms).all()
+    except:
+        NoResultFound
+
+    return jsonify(WorkoutPrograms=[i.serialize for i in List])
+
+
+@app.route('/ProgramRoutine', methods=['GET'])
+def get_programRoutine():
+    try:
+        list = dbsession.query(ProgramRoutine).all()
+    except:
+        NoResultFound
+
+    return jsonify(ProgramRoutine=[i.serialize for i in list])
 
 
 if __name__ == '__main__':
+  #app.debug = True
   app.run()
