@@ -26,8 +26,8 @@ class Activities(Base.Model):
     @property
     def serialize(self):
         return {
-            'id'   : self.id,
-            'name' : self.name
+            'id': self.id,
+            'name': self.name
         }
 
 class Exercises(Base.Model):
