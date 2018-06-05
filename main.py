@@ -15,11 +15,12 @@ app = Flask(__name__)
 # https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 @app.route('/')
 def hello_world():
-  return '<H1>Hello, Welcome to StayActiv!</H1>' \
-         '<a href="https://stayactiv.azurewebsites.net/activities">Activities</a>' \
-         '<a href="https://stayactiv.azurewebsites.net/exercises">Exercises</a>' \
-         '<a href="https://stayactiv.azurewebsites.net/WorkoutPrograms">Workout Programs</a>' \
-         '<a href="https://stayactiv.azurewebsites.net/ProgramRoutine">Program Routine</a>'
+  return '<body><h2>Welcome to StayActiv</h2>' \
+         '<ul><li><a href="https://stayactiv.azurewebsites.net/activities">Activities</a>' \
+         '</li><li><a href="https://stayactiv.azurewebsites.net/exercises">Exercises</a>' \
+         '</li><li><a href="https://stayactiv.azurewebsites.net/WorkoutPrograms">Workout Programs</a>' \
+         '</li><li><a href="https://stayactiv.azurewebsites.net/ProgramRoutine">Program Routine</a></li>' \
+         '</ul></body>'
 
 @app.route('/activities', methods=['GET'])
 def get_activities():
