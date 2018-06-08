@@ -16,10 +16,10 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
   return '<body><h2>Welcome to StayActiv</h2>' \
-         '<ul><li><a href="https://stayactiv.azurewebsites.net/activities">Activities</a>' \
-         '</li><li><a href="https://stayactiv.azurewebsites.net/exercises">Exercises</a>' \
-         '</li><li><a href="https://stayactiv.azurewebsites.net/WorkoutPrograms">Workout Programs</a>' \
-         '</li><li><a href="https://stayactiv.azurewebsites.net/ProgramRoutine">Program Routine</a></li>' \
+         '<ul><li><a href="/activities">Activities</a>' \
+         '</li><li><a href="/exercises">Exercises</a>' \
+         '</li><li><a href="/WorkoutPrograms">Workout Programs</a>' \
+         '</li><li><a href="/ProgramRoutine">Program Routine</a></li>' \
          '</ul></body>'
 
 @app.route('/activities', methods=['GET'])
@@ -63,5 +63,5 @@ def get_programRoutine():
 
 
 if __name__ == '__main__':
-  #app.debug = True
+  app.debug = True
   app.run()

@@ -95,19 +95,37 @@ class ProgramRoutine(Base.Model):
 
     @property
     def serialize(self):
-        return {
-            'id': self.id,
+
+        dict = {
             'week': self.week,
             'day': self.day,
             'muscle': self.muscle,
             'sets': self.sets,
             'repetition' : self.reps,
-            'rest time': self.restTime,
-            'preview image': self.previewLink
-            # 'program Id' : self.programId,
-            # 'exercise Id' : self.exerciseId
+            'restTime': self.restTime,
+            'previewImage': self.previewLink,
+            'programId': self.programId,
+            'exerciseId': self.exerciseId,
         }
+        dict["Exercises"] = {
+            'id'         : self.Exercises.id,
+            'name'       : self.Exercises.name,
+            'difficulty' : self.Exercises.difficulty,
+            'type'       : self.Exercises.type,
+            'muscle'     : self.Exercises.muscle,
+            'routine'    : self.Exercises.routine
+        }
+        # dict["WorkoutPrograms"] = {
+        #     'id': self.WorkoutPrograms.id,
+        #     'name': self.WorkoutPrograms.name,
+        #     'difficulty': self.WorkoutPrograms.difficulty,
+        #     'type': self.WorkoutPrograms.type,
+        #     'frequency': self.WorkoutPrograms.frequency,
+        #     'bodypart': self.WorkoutPrograms.bodypart,
+        #     'routine': self.WorkoutPrograms.routine
+        # }
 
+        return dict
 
 engine = create_engine('sqlite:///stayactiv-dev.db')
 Base.metadata.create_all(engine)
