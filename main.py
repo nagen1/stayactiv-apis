@@ -66,7 +66,7 @@ def get_programRoutine():
 
 
 @app.route('/workouts', methods=['GET'])
-def get_activities():
+def workouts():
     try:
         list = workoutJson
     except:
