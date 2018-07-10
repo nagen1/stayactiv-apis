@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, and_, distinct
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 from database import Base, Activities, Exercises, WorkoutPrograms, ProgramRoutine
+from workoutJson from taskJson
 
 engine = create_engine('sqlite:///stayactiv-dev.db')
 Base.metadata.bind = engine
@@ -21,6 +22,7 @@ def hello_world():
          '</li><li><a href="/WorkoutPrograms">Workout Programs</a>' \
          '</li><li><a href="/ProgramRoutine">Program Routine</a></li>' \
          '</ul></body>'
+
 
 @app.route('/activities', methods=['GET'])
 def get_activities():
@@ -60,6 +62,17 @@ def get_programRoutine():
         NoResultFound
 
     return jsonify(ProgramRoutine=[i.serialize for i in list])
+
+
+
+@app.route('/workouts', methods=['GET'])
+def get_activities():
+    try:
+        list = workoutJson
+    except:
+        NoResultFound
+
+    return jsonify({'workouts': list})
 
 
 if __name__ == '__main__':
