@@ -1,5 +1,5 @@
 
-json = [{
+workoutJson = [{
   "activityid": 217,
   "activityname": "WorkOut",
   "created": "2018-06-16",
