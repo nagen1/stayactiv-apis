@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, and_, distinct
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 from database import Base, Activities, Exercises, WorkoutPrograms, ProgramRoutine
-from workoutJson from taskJson
+from taskJson import workoutJson
 
 engine = create_engine('sqlite:///stayactiv-dev.db')
 Base.metadata.bind = engine
