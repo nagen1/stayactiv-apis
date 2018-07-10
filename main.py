@@ -21,8 +21,8 @@ def hello_world():
          '</li><li><a href="/exercises">Exercises</a>' \
          '</li><li><a href="/WorkoutPrograms">Workout Programs</a>' \
          '</li><li><a href="/ProgramRoutine">Program Routine</a></li>' \
+         '</li><li><a href="/workouts">WorkOuts - New Json</a></li>' \
          '</ul></body>'
-
 
 @app.route('/activities', methods=['GET'])
 def get_activities():
