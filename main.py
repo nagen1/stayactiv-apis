@@ -72,7 +72,7 @@ def workouts():
     except:
         NoResultFound
 
-    return jsonify({'workouts': list})
+    return jsonify({'stayactiv': list})
 
 
 if __name__ == '__main__':
